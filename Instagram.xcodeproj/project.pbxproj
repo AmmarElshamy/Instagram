@@ -3,34 +3,42 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4F1D8DAC1A36EC207A6A881F /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B415ACEEEC1AB9F922C9A4AD /* Pods_Instagram.framework */; };
+		A043632F24622829000F19BE /* UserProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043632E24622829000F19BE /* UserProfileHeaderCollectionViewCell.swift */; };
+		A04363352462358C000F19BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04363342462358C000F19BE /* User.swift */; };
 		A0454F2D245C7D4100356AB0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0454F2C245C7D4100356AB0 /* Extensions.swift */; };
 		A0454F2F245C98B900356AB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0454F2E245C98B900356AB0 /* GoogleService-Info.plist */; };
+		A057DA3B2463544000CFB21C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A057DA392463544000CFB21C /* Main.storyboard */; };
 		A0BCEE3A245B61B9005A2741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE39245B61B9005A2741 /* AppDelegate.swift */; };
 		A0BCEE3C245B61B9005A2741 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */; };
-		A0BCEE3E245B61B9005A2741 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3D245B61B9005A2741 /* ViewController.swift */; };
-		A0BCEE41245B61B9005A2741 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0BCEE3F245B61B9005A2741 /* Main.storyboard */; };
+		A0BCEE3E245B61B9005A2741 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3D245B61B9005A2741 /* SignUp.swift */; };
 		A0BCEE43245B61BB005A2741 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0BCEE42245B61BB005A2741 /* Assets.xcassets */; };
 		A0BCEE46245B61BB005A2741 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0BCEE44245B61BB005A2741 /* LaunchScreen.storyboard */; };
+		A0F02802245E2BAF00B83DDD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F02801245E2BAF00B83DDD /* MainTabBarController.swift */; };
+		A0F02804245E388A00B83DDD /* UserProfileControllerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F02803245E388A00B83DDD /* UserProfileControllerCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30FC31E2042B71CC8D7DAB /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		46A01A9105B8E92DE8A27129 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
+		A043632E24622829000F19BE /* UserProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		A04363342462358C000F19BE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A0454F2C245C7D4100356AB0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A0454F2E245C98B900356AB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A057DA3A2463544000CFB21C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A0BCEE36245B61B9005A2741 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BCEE39245B61B9005A2741 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A0BCEE3D245B61B9005A2741 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A0BCEE40245B61B9005A2741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A0BCEE3D245B61B9005A2741 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		A0BCEE42245B61BB005A2741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0BCEE45245B61BB005A2741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0BCEE47245B61BB005A2741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0F02801245E2BAF00B83DDD /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		A0F02803245E388A00B83DDD /* UserProfileControllerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileControllerCollectionViewController.swift; sourceTree = "<group>"; };
 		B415ACEEEC1AB9F922C9A4AD /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,8 +60,50 @@
 				1D30FC31E2042B71CC8D7DAB /* Pods-Instagram.debug.xcconfig */,
 				46A01A9105B8E92DE8A27129 /* Pods-Instagram.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A043632D246227F5000F19BE /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A0F02803245E388A00B83DDD /* UserProfileControllerCollectionViewController.swift */,
+				A043632E24622829000F19BE /* UserProfileHeaderCollectionViewCell.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		A043633024623392000F19BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A04363342462358C000F19BE /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A0436331246233EC000F19BE /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A0F02801245E2BAF00B83DDD /* MainTabBarController.swift */,
+				A0436332246233FB000F19BE /* Signup */,
+				A043632D246227F5000F19BE /* UserProfile */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A0436332246233FB000F19BE /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				A0BCEE3D245B61B9005A2741 /* SignUp.swift */,
+			);
+			name = Signup;
+			sourceTree = "<group>";
+		};
+		A0436333246234B7000F19BE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A0454F2C245C7D4100356AB0 /* Extensions.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		A0BCEE2D245B61B9005A2741 = {
@@ -77,15 +127,16 @@
 		A0BCEE38245B61B9005A2741 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				A0436331246233EC000F19BE /* Scenes */,
+				A043633024623392000F19BE /* Models */,
+				A0436333246234B7000F19BE /* Helper */,
 				A0BCEE39245B61B9005A2741 /* AppDelegate.swift */,
 				A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */,
-				A0BCEE3D245B61B9005A2741 /* ViewController.swift */,
-				A0BCEE3F245B61B9005A2741 /* Main.storyboard */,
 				A0BCEE42245B61BB005A2741 /* Assets.xcassets */,
 				A0BCEE44245B61BB005A2741 /* LaunchScreen.storyboard */,
 				A0BCEE47245B61BB005A2741 /* Info.plist */,
-				A0454F2C245C7D4100356AB0 /* Extensions.swift */,
 				A0454F2E245C98B900356AB0 /* GoogleService-Info.plist */,
+				A057DA392463544000CFB21C /* Main.storyboard */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -159,9 +210,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0BCEE46245B61BB005A2741 /* LaunchScreen.storyboard in Resources */,
+				A057DA3B2463544000CFB21C /* Main.storyboard in Resources */,
 				A0454F2F245C98B900356AB0 /* GoogleService-Info.plist in Resources */,
 				A0BCEE43245B61BB005A2741 /* Assets.xcassets in Resources */,
-				A0BCEE41245B61B9005A2741 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,8 +265,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0BCEE3E245B61B9005A2741 /* ViewController.swift in Sources */,
+				A043632F24622829000F19BE /* UserProfileHeaderCollectionViewCell.swift in Sources */,
+				A0BCEE3E245B61B9005A2741 /* SignUp.swift in Sources */,
 				A0BCEE3A245B61B9005A2741 /* AppDelegate.swift in Sources */,
+				A0F02802245E2BAF00B83DDD /* MainTabBarController.swift in Sources */,
+				A0F02804245E388A00B83DDD /* UserProfileControllerCollectionViewController.swift in Sources */,
+				A04363352462358C000F19BE /* User.swift in Sources */,
 				A0BCEE3C245B61B9005A2741 /* SceneDelegate.swift in Sources */,
 				A0454F2D245C7D4100356AB0 /* Extensions.swift in Sources */,
 			);
@@ -224,10 +279,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A0BCEE3F245B61B9005A2741 /* Main.storyboard */ = {
+		A057DA392463544000CFB21C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A0BCEE40245B61B9005A2741 /* Base */,
+				A057DA3A2463544000CFB21C /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

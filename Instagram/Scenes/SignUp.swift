@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignUp.swift
 //  Instagram
 //
 //  Created by Ammar Elshamy on 4/30/20.
@@ -9,16 +9,16 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    let plusPhotoButton: UIButton = {
+    private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(plusPhotoButtonPressed), for: .touchDown)
         return button
     }()
     
-    let emailTextField: UITextField = {
+    private let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
@@ -27,7 +27,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return textField
     }()
     
-    let usernameTextField: UITextField = {
+    private let usernameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Username"
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return textField
     }()
     
-    let passwordTextField: UITextField = {
+    private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.isSecureTextEntry = true
         textField.placeholder = "Password"
@@ -46,7 +46,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return textField
     }()
     
-    let signUpButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
@@ -58,7 +58,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return button
     }()
     
-    lazy var inputFieldsStack: UIStackView = {
+    private lazy var inputFieldsStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [self.emailTextField, self.usernameTextField, self.passwordTextField, self.signUpButton])
         
         // Enable Signup button when all input fields are filled
