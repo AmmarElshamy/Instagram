@@ -20,11 +20,18 @@ class MainTabBarController: UITabBarController {
             DispatchQueue.main.async {
                 let loginController = LoginController()
                 let navController = UINavigationController(rootViewController: loginController)
+                navController.modalPresentationStyle = .fullScreen
                 self.present(navController, animated: true)
             }
             return
         }
         
+        setupViewControllers()
+        
+    }
+    
+    
+    func setupViewControllers() {
         let userProfilelayout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: userProfilelayout)
         

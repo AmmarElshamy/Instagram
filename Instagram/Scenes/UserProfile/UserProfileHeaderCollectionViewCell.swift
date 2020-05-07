@@ -10,7 +10,7 @@ import UIKit
 
 class UserProfileHeader: UICollectionViewCell {
     
-    private var user: User? {
+    var user: User? {
         didSet{
             setupProfileImage()
             
@@ -20,7 +20,6 @@ class UserProfileHeader: UICollectionViewCell {
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.red   // to be removed
         imageView.layer.cornerRadius = 40
         imageView.layer.masksToBounds = true
         return imageView
@@ -83,7 +82,6 @@ class UserProfileHeader: UICollectionViewCell {
     
     private let usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ammar Elshamy"        // to be removed
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()

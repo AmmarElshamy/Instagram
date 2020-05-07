@@ -73,6 +73,17 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         return stackView
     }()
     
+    private let haveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        
+        attributedTitle.append(NSAttributedString(string: "Login", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleShowLogin), for: .touchDown)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,7 +100,46 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         view.addSubview(inputFieldsStack)
         inputFieldsStack.anchor(top: plusPhotoButton.bottomAnchor, paddingTop: 20, bottom: nil, paddingBottom: 0, left: view.leftAnchor, paddingLeft: 40, right: view.rightAnchor, paddingRight: 40, centerX: nil, centerY: nil, width: 0, height: 200)
         
+        view.addSubview(haveAccountButton)
+        haveAccountButton.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 20, left: view.leftAnchor, paddingLeft: 0, right: view.rightAnchor, paddingRight: 0, centerX: nil, centerY: nil, width: 0, height: 50)
+        
     }
+    
+    @objc func plusPhotoButtonPressed() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[.editedImage] as? UIImage {
+            plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
+            plusPhotoButton.layer.masksToBounds = true
+            plusPhotoButton.layer.borderColor = UIColor.black.cgColor
+            plusPhotoButton.layer.borderWidth = 3
+        }
+        
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @objc func handleTextInputChange() {
+           let isFormValid = emailTextField.text?.count ?? 0 > 0 && usernameTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0
+           
+           if isFormValid {
+               signUpButton.isEnabled = true
+               signUpButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+           } else {
+               signUpButton.isEnabled = false
+               signUpButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+           }
+           
+       }
     
     @objc func signUpButtonPressed() {
         guard let email = emailTextField.text, email.count > 0 else {return}
@@ -108,8 +158,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
             
             print("Successfully created user:", data?.user.uid ?? "")
             
-            
-            
             // Save username into DB
             guard let uid = data?.user.uid else {return}
             var userValues = ["username": username]
@@ -122,8 +170,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                 }
                 
                 print("Successfully saved username to DB")
+                self.refreshUserProfile()
             }
-            
             
             // Save profile image into storage and DB
             let fileName = NSUUID().uuidString
@@ -153,48 +201,28 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                         }
                         
                         print("Successfully saved user image url to DB")
+                        self.refreshUserProfile()
                     }
-                        
+                    
+                    self.refreshUserProfile()
+                    self.dismiss(animated: true)
                 }
             }
+            
+            
             
         }
     }
     
-    @objc func handleTextInputChange() {
-        let isFormValid = emailTextField.text?.count ?? 0 > 0 && usernameTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0
+    func refreshUserProfile() {
+        guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {return}
         
-        if isFormValid {
-            signUpButton.isEnabled = true
-            signUpButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
-        } else {
-            signUpButton.isEnabled = false
-            signUpButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
-        }
+        mainTabBarController.setupViewControllers()
         
     }
     
-    @objc func plusPhotoButtonPressed() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = true
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true)
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        if let editedImage = info[.editedImage] as? UIImage {
-            plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
-            plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
-            plusPhotoButton.layer.masksToBounds = true
-            plusPhotoButton.layer.borderColor = UIColor.black.cgColor
-            plusPhotoButton.layer.borderWidth = 3
-        }
-        
-        
-        dismiss(animated: true, completion: nil)
-        
+    @objc func handleShowLogin() {
+        navigationController?.popViewController(animated: true)
     }
 
 }

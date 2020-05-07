@@ -35,7 +35,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
-        Database.database().reference().child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionary = snapshot.value as? [String: Any] else {return}
 
@@ -61,6 +61,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             
             do {
                 try Auth.auth().signOut()
+                
+                let loginController = LoginController()
+                let navController = UINavigationController(rootViewController: loginController)
+                navController.modalPresentationStyle = .fullScreen
+                self.present(navController, animated: true)
+                
             } catch let error{
                 print("Failed to sign out", error)
             }
@@ -116,6 +122,8 @@ extension UserProfileController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! UserProfileHeader
+        
+        header.user = self.user
             
          return header
     }
