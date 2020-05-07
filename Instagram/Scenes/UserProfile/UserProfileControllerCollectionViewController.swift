@@ -28,6 +28,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView.backgroundColor = .white
 
         fetchUser()
+        setupLogOutButton()
 
     }
 
@@ -49,14 +50,40 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }
     }
     
+    func setupLogOutButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
+    }
     
+    @objc func handleLogOut() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
+            
+            do {
+                try Auth.auth().signOut()
+            } catch let error{
+                print("Failed to sign out", error)
+            }
+            
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true)
+    }
     
-    // MARK: UICollectionViewDataSource
+}
 
+
+
+// MARK: UICollectionViewDataSource
+
+extension UserProfileController {
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 7
     }
-   
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
         
@@ -78,9 +105,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         return CGSize(width: width, height: width )
     }
     
-    
-    
-    // MARK: UICollectionViewHeader
+}
+
+
+
+ // MARK: UICollectionViewHeader
+
+extension UserProfileController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -93,5 +124,5 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 200)
     }
-
+    
 }

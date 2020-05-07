@@ -1,5 +1,5 @@
 //
-//  SignUp.swift
+//  SignUpController.swift
 //  Instagram
 //
 //  Created by Ammar Elshamy on 4/30/20.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -75,6 +75,8 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
         
         setupViews()
     }

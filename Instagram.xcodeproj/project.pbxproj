@@ -12,10 +12,11 @@
 		A04363352462358C000F19BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04363342462358C000F19BE /* User.swift */; };
 		A0454F2D245C7D4100356AB0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0454F2C245C7D4100356AB0 /* Extensions.swift */; };
 		A0454F2F245C98B900356AB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0454F2E245C98B900356AB0 /* GoogleService-Info.plist */; };
+		A054BECA2463813700D9A1D9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054BEC92463813700D9A1D9 /* LoginController.swift */; };
 		A057DA3B2463544000CFB21C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A057DA392463544000CFB21C /* Main.storyboard */; };
 		A0BCEE3A245B61B9005A2741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE39245B61B9005A2741 /* AppDelegate.swift */; };
 		A0BCEE3C245B61B9005A2741 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */; };
-		A0BCEE3E245B61B9005A2741 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3D245B61B9005A2741 /* SignUp.swift */; };
+		A0BCEE3E245B61B9005A2741 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3D245B61B9005A2741 /* SignUpController.swift */; };
 		A0BCEE43245B61BB005A2741 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0BCEE42245B61BB005A2741 /* Assets.xcassets */; };
 		A0BCEE46245B61BB005A2741 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0BCEE44245B61BB005A2741 /* LaunchScreen.storyboard */; };
 		A0F02802245E2BAF00B83DDD /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F02801245E2BAF00B83DDD /* MainTabBarController.swift */; };
@@ -29,11 +30,12 @@
 		A04363342462358C000F19BE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A0454F2C245C7D4100356AB0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A0454F2E245C98B900356AB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A054BEC92463813700D9A1D9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A057DA3A2463544000CFB21C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A0BCEE36245B61B9005A2741 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BCEE39245B61B9005A2741 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A0BCEE3D245B61B9005A2741 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		A0BCEE3D245B61B9005A2741 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		A0BCEE42245B61BB005A2741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0BCEE45245B61BB005A2741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0BCEE47245B61BB005A2741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,18 +86,11 @@
 			isa = PBXGroup;
 			children = (
 				A0F02801245E2BAF00B83DDD /* MainTabBarController.swift */,
-				A0436332246233FB000F19BE /* Signup */,
+				A0D38A5424636C6F00B2E110 /* SignUp */,
+				A054BEC8246380A600D9A1D9 /* Login */,
 				A043632D246227F5000F19BE /* UserProfile */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		A0436332246233FB000F19BE /* Signup */ = {
-			isa = PBXGroup;
-			children = (
-				A0BCEE3D245B61B9005A2741 /* SignUp.swift */,
-			);
-			name = Signup;
 			sourceTree = "<group>";
 		};
 		A0436333246234B7000F19BE /* Helper */ = {
@@ -104,6 +99,14 @@
 				A0454F2C245C7D4100356AB0 /* Extensions.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		A054BEC8246380A600D9A1D9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A054BEC92463813700D9A1D9 /* LoginController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		A0BCEE2D245B61B9005A2741 = {
@@ -133,12 +136,20 @@
 				A0BCEE39245B61B9005A2741 /* AppDelegate.swift */,
 				A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */,
 				A0BCEE42245B61BB005A2741 /* Assets.xcassets */,
+				A057DA392463544000CFB21C /* Main.storyboard */,
 				A0BCEE44245B61BB005A2741 /* LaunchScreen.storyboard */,
 				A0BCEE47245B61BB005A2741 /* Info.plist */,
 				A0454F2E245C98B900356AB0 /* GoogleService-Info.plist */,
-				A057DA392463544000CFB21C /* Main.storyboard */,
 			);
 			path = Instagram;
+			sourceTree = "<group>";
+		};
+		A0D38A5424636C6F00B2E110 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				A0BCEE3D245B61B9005A2741 /* SignUpController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		D462574DBE91ACC37EB596ED /* Frameworks */ = {
@@ -266,9 +277,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A043632F24622829000F19BE /* UserProfileHeaderCollectionViewCell.swift in Sources */,
-				A0BCEE3E245B61B9005A2741 /* SignUp.swift in Sources */,
+				A0BCEE3E245B61B9005A2741 /* SignUpController.swift in Sources */,
 				A0BCEE3A245B61B9005A2741 /* AppDelegate.swift in Sources */,
 				A0F02802245E2BAF00B83DDD /* MainTabBarController.swift in Sources */,
+				A054BECA2463813700D9A1D9 /* LoginController.swift in Sources */,
 				A0F02804245E388A00B83DDD /* UserProfileControllerCollectionViewController.swift in Sources */,
 				A04363352462358C000F19BE /* User.swift in Sources */,
 				A0BCEE3C245B61B9005A2741 /* SceneDelegate.swift in Sources */,
