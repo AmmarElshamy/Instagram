@@ -9,10 +9,12 @@
 import UIKit
 import Firebase
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
         
         //check if not logged in
         if Auth.auth().currentUser == nil {
@@ -30,20 +32,61 @@ class MainTabBarController: UITabBarController {
         
     }
     
-    
-    func setupViewControllers() {
-        let userProfilelayout = UICollectionViewFlowLayout()
-        let userProfileController = UserProfileController(collectionViewLayout: userProfilelayout)
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        if index == 2 {
+            
+            let layout = UICollectionViewFlowLayout()
+            let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
+            let photoSelectorNavController = UINavigationController(rootViewController: photoSelectorController)
+            photoSelectorNavController.modalPresentationStyle = .fullScreen
+            present(photoSelectorNavController, animated: true)
+            
+            return false
+        }
         
-        let navController = UINavigationController(rootViewController: userProfileController)
-        navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-        navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
-        
-        tabBar.tintColor = .black
-        
-        viewControllers = [navController, UIViewController()]
+        return true
     }
     
+    func setupViewControllers() {
+        
+        // Home
+        let homeNavController = templateNavController(image: UIImage(named: "home_unselected"), selectedImage: UIImage(named: "home_selected"), rootViewController: UIViewController())
+        
+        // search
+        let searchNavController = templateNavController(image: UIImage(named: "search_unselected"), selectedImage: UIImage(named: "search_selected"), rootViewController: UIViewController())
+        
+        // Add Photo
+        let plusNavController = templateNavController(image: UIImage(named: "plus_unselected"), selectedImage: UIImage(named: "plus_unselected"), rootViewController: UIViewController())
+        
+        // like
+        let likeNavController = templateNavController(image: UIImage(named: "like_unselected"), selectedImage: UIImage(named: "like_selected"), rootViewController: UIViewController())
+        
+        // User profile
+        let layout = UICollectionViewFlowLayout()
+        let userProfileNavController = templateNavController(image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"), rootViewController: UserProfileController(collectionViewLayout: layout))
+        
+        // add views to tab bar
+        tabBar.tintColor = .black
+        viewControllers = [homeNavController, searchNavController, plusNavController, likeNavController, userProfileNavController]
+        
+        // modify tab bar items insets
+        guard let items = tabBar.items else {return}
+        for item in items {
+            item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
+        }
+    }
+    
+    
+    func templateNavController(image: UIImage?, selectedImage: UIImage?, rootViewController: UIViewController) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: rootViewController)
+        navController.tabBarItem.image = image!
+        navController.tabBarItem.selectedImage = selectedImage!
+        
+        return navController
+    }
 
+    
+    
     
 }

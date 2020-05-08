@@ -1,5 +1,5 @@
 //
-//  UserProfileHeaderCollectionViewCell.swift
+//  UserProfileHeader.swift
 //  Instagram
 //
 //  Created by Ammar Elshamy on 5/6/20.
