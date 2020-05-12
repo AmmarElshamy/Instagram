@@ -19,6 +19,8 @@
 		A054BECA2463813700D9A1D9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054BEC92463813700D9A1D9 /* LoginController.swift */; };
 		A057DA3B2463544000CFB21C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A057DA392463544000CFB21C /* Main.storyboard */; };
 		A062F9D82469AA1800D24874 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A062F9D72469AA1800D24874 /* CustomImageView.swift */; };
+		A062F9DD2469C84F00D24874 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A062F9DC2469C84F00D24874 /* HomeController.swift */; };
+		A062F9DF2469C9C200D24874 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A062F9DE2469C9C200D24874 /* HomePostCell.swift */; };
 		A0BCEE3A245B61B9005A2741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE39245B61B9005A2741 /* AppDelegate.swift */; };
 		A0BCEE3C245B61B9005A2741 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */; };
 		A0BCEE3E245B61B9005A2741 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BCEE3D245B61B9005A2741 /* SignUpController.swift */; };
@@ -43,6 +45,8 @@
 		A054BEC92463813700D9A1D9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A057DA3A2463544000CFB21C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A062F9D72469AA1800D24874 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		A062F9DC2469C84F00D24874 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		A062F9DE2469C9C200D24874 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		A0BCEE36245B61B9005A2741 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0BCEE39245B61B9005A2741 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0BCEE3B245B61B9005A2741 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				A0F02801245E2BAF00B83DDD /* MainTabBarController.swift */,
+				A062F9DB2469C80F00D24874 /* Home */,
 				A0D38A5424636C6F00B2E110 /* SignUp */,
 				A054BEC8246380A600D9A1D9 /* Login */,
 				A043632D246227F5000F19BE /* UserProfile */,
@@ -123,6 +128,15 @@
 				A054BEC92463813700D9A1D9 /* LoginController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		A062F9DB2469C80F00D24874 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A062F9DC2469C84F00D24874 /* HomeController.swift */,
+				A062F9DE2469C9C200D24874 /* HomePostCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A0BCEE2D245B61B9005A2741 = {
@@ -303,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A053D8832466FC50009DE7E2 /* PhotoSelectorCell.swift in Sources */,
+				A062F9DF2469C9C200D24874 /* HomePostCell.swift in Sources */,
 				A043632F24622829000F19BE /* UserProfileHeader.swift in Sources */,
 				A0318BA32469117C006F9389 /* UserProfileCell.swift in Sources */,
 				A0BCEE3E245B61B9005A2741 /* SignUpController.swift in Sources */,
@@ -314,6 +329,7 @@
 				A0318B9F2468D1FE006F9389 /* SharePhotoController.swift in Sources */,
 				A0F02804245E388A00B83DDD /* UserProfileController.swift in Sources */,
 				A04363352462358C000F19BE /* User.swift in Sources */,
+				A062F9DD2469C84F00D24874 /* HomeController.swift in Sources */,
 				A0BCEE3C245B61B9005A2741 /* SceneDelegate.swift in Sources */,
 				A0454F2D245C7D4100356AB0 /* Extensions.swift in Sources */,
 				A0DF341A2465B9E500433936 /* PhotoSelectorController.swift in Sources */,

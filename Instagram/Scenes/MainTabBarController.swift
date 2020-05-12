@@ -35,9 +35,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.firstIndex(of: viewController)
         if index == 2 {
-            
-            let layout = UICollectionViewFlowLayout()
-            let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
+            let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
             let photoSelectorNavController = UINavigationController(rootViewController: photoSelectorController)
             photoSelectorNavController.modalPresentationStyle = .fullScreen
             present(photoSelectorNavController, animated: true)
@@ -51,7 +49,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     func setupViewControllers() {
         
         // Home
-        let homeNavController = templateNavController(image: UIImage(named: "home_unselected"), selectedImage: UIImage(named: "home_selected"), rootViewController: UIViewController())
+        let homeNavController = templateNavController(image: UIImage(named: "home_unselected"), selectedImage: UIImage(named: "home_selected"), rootViewController: HomeController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         // search
         let searchNavController = templateNavController(image: UIImage(named: "search_unselected"), selectedImage: UIImage(named: "search_selected"), rootViewController: UIViewController())
@@ -63,8 +61,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let likeNavController = templateNavController(image: UIImage(named: "like_unselected"), selectedImage: UIImage(named: "like_selected"), rootViewController: UIViewController())
         
         // User profile
-        let layout = UICollectionViewFlowLayout()
-        let userProfileNavController = templateNavController(image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"), rootViewController: UserProfileController(collectionViewLayout: layout))
+        let userProfileNavController = templateNavController(image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"), rootViewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         // add views to tab bar
         tabBar.tintColor = .black

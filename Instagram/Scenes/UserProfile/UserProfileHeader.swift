@@ -19,6 +19,37 @@ class UserProfileHeader: UICollectionViewCell {
         }
     }
     
+    var postsNumber = 0 {
+        didSet {
+            let attributerText = NSMutableAttributedString(string: "\(self.postsNumber)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributerText.append(NSAttributedString(string: "posts", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+            
+            postsLabel.attributedText = attributerText
+        }
+    }
+    
+    var followersNumber = 0 {
+        didSet {
+            let attributerText = NSMutableAttributedString(string: "\(self.followersNumber)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributerText.append(NSAttributedString(string: "followers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+            
+            followersLabel.attributedText = attributerText
+        }
+    }
+    
+    var followingNumber = 0 {
+        didSet {
+            let attributerText = NSMutableAttributedString(string: "\(self.followingNumber)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributerText.append(NSAttributedString(string: "following", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
+            
+            followingLabel.attributedText = attributerText
+        }
+    }
+    
+    
     private let profileImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.layer.cornerRadius = 40
@@ -28,11 +59,6 @@ class UserProfileHeader: UICollectionViewCell {
     
     private let postsLabel: UILabel = {
         let label = UILabel()
-        let attributerText = NSMutableAttributedString(string: "100\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
-        
-        attributerText.append(NSAttributedString(string: "posts", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
-        
-        label.attributedText = attributerText
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -40,11 +66,6 @@ class UserProfileHeader: UICollectionViewCell {
     
     private let followersLabel: UILabel = {
         let label = UILabel()
-        let attributerText = NSMutableAttributedString(string: "100\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
-        
-        attributerText.append(NSAttributedString(string: "followers", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
-        
-        label.attributedText = attributerText
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -52,11 +73,6 @@ class UserProfileHeader: UICollectionViewCell {
     
     private let followingLabel: UILabel = {
         let label = UILabel()
-        let attributerText = NSMutableAttributedString(string: "100\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
-        
-        attributerText.append(NSAttributedString(string: "following", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
-        
-        label.attributedText = attributerText
         label.textAlignment = .center
         label.numberOfLines = 0
         return label

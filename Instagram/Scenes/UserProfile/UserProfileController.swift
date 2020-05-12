@@ -27,28 +27,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         self.collectionView.register(UserProfileCell.self, forCellWithReuseIdentifier: cellIdentifier)
         
         collectionView.backgroundColor = .white
+        
+        setupLogOutButton()
 
         fetchUser()
-        setupLogOutButton()
-        fetchOrderedPosts()
-    }
-
-    func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            guard let dictionary = snapshot.value as? [String: Any] else {return}
-
-            self.user = User(userDictionary: dictionary)
-            
-            self.navigationItem.title = self.user?.username
-            
-            self.collectionView.reloadData()
-            
-        }) { (error) in
-            print("Failed to fetch user", error)
-        }
     }
     
     func setupLogOutButton() {
@@ -57,7 +39,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     @objc func handleLogOut() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
+
         alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
             
             do {
@@ -75,18 +57,31 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
+
         present(alertController, animated: true)
+    }
+    
+    func fetchUser() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        Database.fetchUserWithUid(uid: uid) { (user) in
+            self.user = user
+            self.navigationItem.title = self.user?.username
+            self.collectionView.reloadData()
+            self.fetchOrderedPosts()
+        }
+        
     }
     
     func fetchOrderedPosts() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let user = self.user else {return}
 
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapShot) in
             guard let dictionary = snapShot.value as? [String: Any] else {return}
-                
-            let post = Post(post: dictionary)
+                        
+            let post = Post(user: user, post: dictionary)
             self.posts.insert(post, at: 0)
             self.collectionView.reloadData()
 
@@ -140,6 +135,7 @@ extension UserProfileController {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! UserProfileHeader
         
         header.user = self.user
+        header.postsNumber = self.posts.count
             
          return header
     }
