@@ -13,7 +13,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     private let cellIdentifier = "Cell"
     private let headerIdentifier = "Header"
-    private var user: User?
+    var user: User?
     private var posts = [Post]()
 
     override func viewDidLoad() {
@@ -62,11 +62,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let uid = user?.uid ?? Auth.auth().currentUser?.uid else {return}
         
         Database.fetchUserWithUid(uid: uid) { (user) in
             self.user = user
-            self.navigationItem.title = self.user?.username
+//            self.navigationItem.title = self.user?.username
             self.collectionView.reloadData()
             self.fetchOrderedPosts()
         }
@@ -74,8 +74,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
         guard let user = self.user else {return}
+        let uid = user.uid
 
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapShot) in
@@ -92,7 +92,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     
 }
-
 
 
 // MARK: UICollectionViewDataSource

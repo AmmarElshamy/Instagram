@@ -45,7 +45,6 @@ class HomePostCell: UICollectionViewCell {
     
     private let usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "username"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
