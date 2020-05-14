@@ -12,10 +12,14 @@ struct Post {
     let imageUrl: String
     let user: User
     let caption: String
+    let creationDate: Date
     
     init(user: User, post: [String: Any]) {
         self.user = user
         self.imageUrl = post["imageUrl"] as! String
         self.caption = post["caption"] as! String
+        
+        let timeSince1970 = post["date"] as! Double
+        self.creationDate = Date(timeIntervalSince1970: timeSince1970)
     }
 }

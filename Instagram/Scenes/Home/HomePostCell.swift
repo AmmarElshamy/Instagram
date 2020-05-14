@@ -21,18 +21,18 @@ class HomePostCell: UICollectionViewCell {
             guard let username = post?.user.username else {return}
             usernameLabel.text = username
             
-            guard let caption = post?.caption else {return}
-            
-            setupAttributedCaption(username: username, caption: caption)
+            setupAttributedCaption(post: post)
         }
     }
     
     private let userProfileImageView: CustomImageView = {
         let imageView = CustomImageView()
-        imageView.backgroundColor = .blue
+        imageView.backgroundColor = .white
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
+        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderWidth = 0.5
         return imageView
     }()
     
@@ -132,14 +132,19 @@ class HomePostCell: UICollectionViewCell {
         captionLabel.anchor(top: actionButtonsStack.bottomAnchor, paddingTop: 4, bottom: bottomAnchor, paddingBottom: 0, left: leftAnchor, paddingLeft: 8, right: rightAnchor, paddingRight: 8, centerX: nil, centerY: nil, width: 0, height: 0)
     }
     
-    func setupAttributedCaption(username: String, caption: String) {
+        func setupAttributedCaption(post: Post?) {
+        
+            guard let username = post?.user.username else {return}
+            guard let caption = post?.caption else {return}
+            guard let creationDate = post?.creationDate else {return}
+        
         let attributedText = NSMutableAttributedString(string: "\(username) ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
         
         attributedText.append(NSAttributedString(string: caption, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
         
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
         
-        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+            attributedText.append(NSAttributedString(string: "\(creationDate.timeAgo())", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
     }

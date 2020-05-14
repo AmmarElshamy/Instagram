@@ -16,6 +16,8 @@ class CustomImageView: UIImageView {
     
     func loadImage(urlString: String) {
         
+        self.image = nil
+        
         if let cashedImage = CustomImageView.imageCashe[urlString] {
             self.image = cashedImage
             return

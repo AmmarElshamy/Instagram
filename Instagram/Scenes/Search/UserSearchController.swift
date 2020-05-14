@@ -52,7 +52,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     func fetchUsers() {
         
         let ref = Database.database().reference().child("users")
-        ref.observe(.value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let dictionaris = snapshot.value as? [String: Any] else {return}
             dictionaris.forEach { (key, value) in
