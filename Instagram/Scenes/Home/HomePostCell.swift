@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol HomePostCellDelegate {
+    func didTapComment(post: Post)
+    func didLike(for cell: HomePostCell)
+}
+
 class HomePostCell: UICollectionViewCell {
+    
+    var delegate: HomePostCellDelegate?
     
     var post: Post? {
         didSet {
@@ -20,6 +27,12 @@ class HomePostCell: UICollectionViewCell {
             
             guard let username = post?.user.username else {return}
             usernameLabel.text = username
+            
+            if post!.isLiked {
+                likeButton.setImage(UIImage(named: "like_selected"), for: .normal)
+            } else {
+                likeButton.setImage(UIImage(named: "like_unselected"), for: .normal)
+            }
             
             setupAttributedCaption(post: post)
         }
@@ -57,15 +70,16 @@ class HomePostCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let likeButton: UIButton = {
+    private lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
     }()
     
-    private let commentButton: UIButton = {
+    private lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "comment")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
     
@@ -132,11 +146,11 @@ class HomePostCell: UICollectionViewCell {
         captionLabel.anchor(top: actionButtonsStack.bottomAnchor, paddingTop: 4, bottom: bottomAnchor, paddingBottom: 0, left: leftAnchor, paddingLeft: 8, right: rightAnchor, paddingRight: 8, centerX: nil, centerY: nil, width: 0, height: 0)
     }
     
-        func setupAttributedCaption(post: Post?) {
+    func setupAttributedCaption(post: Post?) {
         
-            guard let username = post?.user.username else {return}
-            guard let caption = post?.caption else {return}
-            guard let creationDate = post?.creationDate else {return}
+        guard let username = post?.user.username else {return}
+        guard let caption = post?.caption else {return}
+        guard let creationDate = post?.creationDate else {return}
         
         let attributedText = NSMutableAttributedString(string: "\(username) ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
         
@@ -144,10 +158,18 @@ class HomePostCell: UICollectionViewCell {
         
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 4)]))
         
-            attributedText.append(NSAttributedString(string: "\(creationDate.timeAgo())", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        attributedText.append(NSAttributedString(string: "\(creationDate.timeAgo())", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
     }
-
+    
+    @objc func handleComment() {
+        guard let post = self.post else {return}
+        self.delegate?.didTapComment(post: post)
+    }
+    
+    @objc func handleLike() {
+        delegate?.didLike(for: self)
+    }
     
 }

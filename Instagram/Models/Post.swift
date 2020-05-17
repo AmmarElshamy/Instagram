@@ -13,13 +13,15 @@ struct Post {
     let user: User
     let caption: String
     let creationDate: Date
+    var id: String?
+    var isLiked = false
     
     init(user: User, post: [String: Any]) {
         self.user = user
-        self.imageUrl = post["imageUrl"] as! String
-        self.caption = post["caption"] as! String
+        self.imageUrl = post["imageUrl"] as? String ?? ""
+        self.caption = post["caption"] as? String ?? ""
         
-        let timeSince1970 = post["date"] as! Double
+        let timeSince1970 = post["date"] as? Double ?? 0
         self.creationDate = Date(timeIntervalSince1970: timeSince1970)
     }
 }
