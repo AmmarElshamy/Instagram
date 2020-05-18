@@ -85,10 +85,10 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         lineSeparatorView.anchor(top: containerView.topAnchor, paddingTop: 0, bottom: nil, paddingBottom: 0, left: containerView.leftAnchor, paddingLeft: 0, right: containerView.rightAnchor, paddingRight: 0, centerX: nil, centerY: nil, width: 0, height: 0.5)
         
         containerView.addSubview(submitButton)
-        submitButton.anchor(top: containerView.topAnchor, paddingTop: 0, bottom: containerView.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: containerView.rightAnchor, paddingRight: 12, centerX: nil, centerY: nil, width: 50, height: 0)
+        submitButton.anchor(top: containerView.topAnchor, paddingTop: 4, bottom: containerView.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 4, left: nil, paddingLeft: 0, right: containerView.rightAnchor, paddingRight: 12, centerX: nil, centerY: nil, width: 50, height: 0)
         
         containerView.addSubview(commentTextField)
-        commentTextField.anchor(top: containerView.topAnchor, paddingTop: 0, bottom: containerView.bottomAnchor, paddingBottom: 0, left: containerView.leftAnchor, paddingLeft: 12, right: submitButton.leftAnchor, paddingRight: 0, centerX: nil, centerY: nil, width: 0, height: 0)
+        commentTextField.anchor(top: containerView.topAnchor, paddingTop: 4, bottom: containerView.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 4, left: containerView.leftAnchor, paddingLeft: 12, right: submitButton.leftAnchor, paddingRight: 0, centerX: nil, centerY: nil, width: 0, height: 0)
     }
     
     @objc func handleSubmit() {

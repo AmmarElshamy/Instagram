@@ -34,7 +34,7 @@ class UserProfileHeader: UICollectionViewCell {
         }
     }
     
-    var postsNumber = 0 {
+    var postsNumber: Int = 0 {
         didSet {
             let attributerText = NSMutableAttributedString(string: "\(self.postsNumber)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
             
@@ -44,7 +44,7 @@ class UserProfileHeader: UICollectionViewCell {
         }
     }
     
-    var followersNumber = 0 {
+    var followersNumber: UInt = 0 {
         didSet {
             let attributerText = NSMutableAttributedString(string: "\(self.followersNumber)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
             
@@ -54,7 +54,7 @@ class UserProfileHeader: UICollectionViewCell {
         }
     }
     
-    var followingNumber = 0 {
+    var followingNumber: UInt = 0 {
         didSet {
             let attributerText = NSMutableAttributedString(string: "\(self.followingNumber)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
             
@@ -237,8 +237,24 @@ class UserProfileHeader: UICollectionViewCell {
         guard let loggedInUserId = Auth.auth().currentUser?.uid else {return}
         guard let userID = user?.uid else {return}
         
-        let ref = Database.database().reference().child("following").child(loggedInUserId)
-        let values = [userID: 1]
+        // add to following
+        var ref = Database.database().reference().child("following").child(loggedInUserId)
+        var values = [userID: 1]
+        ref.updateChildValues(values) { (error, ref) in
+            if let error = error {
+                print("failed to follow user", error)
+                self.editProfileOrFollowButton.isEnabled = true
+            } else {
+                print("Successfully follow user", self.user?.username ?? "")
+                self.editProfileOrFollowButton.removeTarget(self, action: #selector(self.handleFollow), for: .touchUpInside)
+                self.setupUnfollowStyle()
+                self.editProfileOrFollowButton.isEnabled = true
+            }
+        }
+        
+        // add to followers
+        ref = Database.database().reference().child("followers").child(userID)
+        values = [loggedInUserId: 1]
         ref.updateChildValues(values) { (error, ref) in
             if let error = error {
                 print("failed to follow user", error)
@@ -258,7 +274,21 @@ class UserProfileHeader: UICollectionViewCell {
         guard let loggedInUserId = Auth.auth().currentUser?.uid else {return}
         guard let userID = user?.uid else {return}
         
+        // remove from following
         Database.database().reference().child("following").child(loggedInUserId).child(userID).removeValue { (error, ref) in
+            if let error = error {
+                print("failed to Unfollow user", error)
+                self.editProfileOrFollowButton.isEnabled = true
+            } else {
+                print("Successfully Unfollow user", self.user?.username ?? "")
+                self.editProfileOrFollowButton.removeTarget(self, action: #selector(self.handleUnfollow), for: .touchUpInside)
+                self.setupFollowStyle()
+                self.editProfileOrFollowButton.isEnabled = true
+            }
+        }
+        
+        // remove from followers
+        Database.database().reference().child("followers").child(userID).child(loggedInUserId).removeValue { (error, ref) in
             if let error = error {
                 print("failed to Unfollow user", error)
                 self.editProfileOrFollowButton.isEnabled = true

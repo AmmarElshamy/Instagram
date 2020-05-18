@@ -16,6 +16,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     private let headerIdentifier = "Header"
     var user: User?
     private var posts = [Post]()
+    private var followingNumber: UInt = 0
+    private var followersNumber: UInt = 0
     private var isGridView = true
 
     override func viewDidLoad() {
@@ -70,9 +72,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         Database.fetchUserWithUid(uid: uid) { (user) in
             self.user = user
-//            self.navigationItem.title = self.user?.username
             self.collectionView.reloadData()
             self.fetchOrderedPosts()
+            self.fetchFollowingNumber()
+            self.fetchFollowersNumber()
         }
         
     }
@@ -94,6 +97,31 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }
     }
     
+    func fetchFollowingNumber() {
+        guard let user = self.user else {return}
+        let uid = user.uid
+        
+        let ref = Database.database().reference().child("following").child(uid)
+        ref.observe(.value, with: { (snapshot: DataSnapshot) in
+            self.followingNumber = snapshot.childrenCount
+            self.collectionView.reloadData()
+        }) { (error) in
+            print("failed to get following number", error)
+        }
+    }
+    
+    func fetchFollowersNumber() {
+        guard let user = self.user else {return}
+        let uid = user.uid
+        
+        let ref = Database.database().reference().child("followers").child(uid)
+        ref.observe(.value, with: { (snapshot: DataSnapshot) in
+            self.followersNumber = snapshot.childrenCount
+            self.collectionView.reloadData()
+        }) { (error) in
+            print("failed to get followers number", error)
+        }
+    }
     
 }
 
@@ -108,7 +136,7 @@ extension UserProfileController {
     
     // dequeue reusable cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if isGridView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gridCellIdentifier, for: indexPath) as! UserProfileCell
             
@@ -136,7 +164,7 @@ extension UserProfileController {
     
     // cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         if isGridView {
             let width = (view.frame.width - 2) / 3
             return CGSize(width: width, height: width)
@@ -155,9 +183,12 @@ extension UserProfileController {
         
         header.user = self.user
         header.postsNumber = self.posts.count
+        header.followingNumber = self.followingNumber
+        header.followersNumber = self.followersNumber
         header.delegate = self
-            
-         return header
+        
+        
+        return header
     }
     
     // header size
