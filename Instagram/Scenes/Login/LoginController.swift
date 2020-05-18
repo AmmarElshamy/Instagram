@@ -73,7 +73,7 @@ class LoginController: UIViewController {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Don't have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
-        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.customeBlue]))
         
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleShowSignUp), for: .touchDown)
@@ -118,7 +118,7 @@ class LoginController: UIViewController {
         
         if isFormValid {
             loginButton.isEnabled = true
-            loginButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+            loginButton.backgroundColor = UIColor.customeBlue
         } else {
             loginButton.isEnabled = false
             loginButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)

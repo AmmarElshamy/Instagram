@@ -9,22 +9,26 @@
 import UIKit
 import Firebase
 
-class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UserProfileHeaderDelegate {
     
-    private let cellIdentifier = "Cell"
+    private let gridCellIdentifier = "GridCell"
+    private let listCellIdentifier = "ListCell"
     private let headerIdentifier = "Header"
     var user: User?
     private var posts = [Post]()
+    private var isGridView = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Register header
         self.collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         
-        //Register imageCell
-        self.collectionView.register(UserProfileCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        //Register GridImageCell
+        self.collectionView.register(UserProfileCell.self, forCellWithReuseIdentifier: gridCellIdentifier)
+        
+        //Register ListImageCell
+        self.collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: listCellIdentifier)
         
         collectionView.backgroundColor = .white
         
@@ -93,7 +97,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
 }
 
-
 // MARK: UICollectionViewDataSource
 
 extension UserProfileController {
@@ -105,11 +108,20 @@ extension UserProfileController {
     
     // dequeue reusable cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! UserProfileCell
         
-        cell.post = posts[indexPath.item]
-        
-        return cell
+        if isGridView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gridCellIdentifier, for: indexPath) as! UserProfileCell
+            
+            cell.post = posts[indexPath.item]
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: listCellIdentifier, for: indexPath) as! HomePostCell
+            
+            cell.post = posts[indexPath.item]
+            
+            return cell
+        }
     }
     
     // vertical spacing
@@ -124,8 +136,16 @@ extension UserProfileController {
     
     // cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 2) / 3
-        return CGSize(width: width, height: width )
+        
+        if isGridView {
+            let width = (view.frame.width - 2) / 3
+            return CGSize(width: width, height: width)
+        } else {
+            let width = view.frame.width
+            let height = 56 + view.frame.width + 50 + 70
+            return CGSize(width: width, height: height)
+        }
+                
     }
     
     // header
@@ -135,6 +155,7 @@ extension UserProfileController {
         
         header.user = self.user
         header.postsNumber = self.posts.count
+        header.delegate = self
             
          return header
     }
@@ -145,3 +166,18 @@ extension UserProfileController {
     }
     
 }
+
+// MARK: UICollectionViewDataSource
+
+extension UserProfileController {
+    func didChangeToGridView() {
+        isGridView = true
+        collectionView.reloadData()
+    }
+    
+    func didChangeToListView() {
+        isGridView = false
+        collectionView.reloadData()
+    }
+}
+

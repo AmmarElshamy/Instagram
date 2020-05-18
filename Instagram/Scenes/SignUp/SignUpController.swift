@@ -77,7 +77,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
-        attributedTitle.append(NSAttributedString(string: "Login", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        attributedTitle.append(NSAttributedString(string: "Login", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.customeBlue]))
         
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchDown)
@@ -133,7 +133,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
            
            if isFormValid {
                signUpButton.isEnabled = true
-               signUpButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+               signUpButton.backgroundColor = UIColor.customeBlue
            } else {
                signUpButton.isEnabled = false
                signUpButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
